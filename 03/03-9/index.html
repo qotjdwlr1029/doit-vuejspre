@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue Component Emit Event</title>
+  </head>
+  <body>
+    <div id="app">
+      <child-component v-on:show-log="printText"></child-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      
+      Vue.component('child-component',{
+        template : '<button v-on:click="showLog">show</button>',
+        methods : {
+          showLog : function(){
+            this.$emit('show-log');
+          }
+        }
+      });
+
+      new Vue({
+        el : '#app',
+        data : {
+          message : 'Hello Vue! passed from Parent Component'
+        },
+        methods : {
+          printText : function(){
+            console.log('received an Event');
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
